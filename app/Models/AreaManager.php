@@ -7,4 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class AreaManager extends Model
 {
     //
+    protected $guarded = ['id'];
+
+    /**
+     * Relations
+     */
+    // Department Heads <-> Area Manager
+    public function departmentHeads()
+    {
+        return $this->hasMany(DepartmentHead::class, 'area_manager_id');
+    }
 }

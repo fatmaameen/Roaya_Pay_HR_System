@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('job_details', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->string('job_title')->nullable();
             $table->date('appointment_date')->nullable();
@@ -26,8 +26,8 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             
-            $table->unsignedBigInteger('barnch_id');
-            $table->foreign('barnch_id')->references('id')->on('barnches')->onDelete('cascade');
+            $table->unsignedBigInteger('branch_id');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
 
             $table->timestamps();
         });

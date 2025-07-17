@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('leave_balances', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('leave_balance')->default(21);
             $table->integer('e3tyade')->default(15);

@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    use HasFactory;
-    protected $table = 'departments';
+    //
+    protected $guarded = ['id'];
 
-  
 
-    protected $fillable = [
-        'department_name',
-
-    ];
-
+    /**
+     * Relations
+     */
+    // Department <-> Job Detail
+    public function jobDetails()
+    {
+        return $this->hasMany(JobDetail::class, 'department_id');
+    } 
 }

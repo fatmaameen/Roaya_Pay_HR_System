@@ -14,15 +14,23 @@ return new class extends Migration
         Schema::create('employee_infos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('qualification');
             $table->string('birth_certificate');
-            $table->string('national_id');
-            $table->string('military_certificate');
-            $table->string('experience_certificate');
+            
+            $table->string('front_national_id');
+            $table->string('back_national_id');
 
+            $table->string('military_certificate');
+
+            $table->string('brent_insurance');
+
+            $table->string('employment_contract');
+            
+            $table->string('experience_certificate');
+            
             $table->timestamps();
         });
     }

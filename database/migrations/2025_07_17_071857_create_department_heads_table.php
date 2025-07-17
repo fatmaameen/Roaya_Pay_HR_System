@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('department_heads', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('supervisor_id');
-            $table->foreign('supervisor_id')->references('code')->on('supervisors')->onDelete('cascade');
+            $table->foreign('supervisor_id')->references('id')->on('supervisors')->onDelete('cascade');
 
             $table->unsignedBigInteger('area_manager_id');
-            $table->foreign('area_manager_id')->references('code')->on('area_managers')->onDelete('cascade');
+            $table->foreign('area_manager_id')->references('id')->on('area_managers')->onDelete('cascade');
 
             $table->timestamps();
         });

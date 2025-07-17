@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->decimal('total_salary', 10, 2)->nullable();
             $table->decimal('main_salary', 10, 2)->nullable();

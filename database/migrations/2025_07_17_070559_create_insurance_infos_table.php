@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('insurance_infos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('insurance_number')->nullable();
             $table->date('start_date')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
            
             $table->unsignedBigInteger('insurance_id');
-            $table->foreign('insurance_id')->references('id')->on('medical_insurance')->onDelete('cascade');
+            $table->foreign('insurance_id')->references('id')->on('medical_incurances')->onDelete('cascade');
            
 
             $table->decimal('insurance_premium_value', 10, 2)->nullable();

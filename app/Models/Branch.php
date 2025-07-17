@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     //
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
 
     /**
@@ -17,5 +17,5 @@ class Branch extends Model
     public function jobDetails()
     {
         return $this->hasMany(JobDetail::class, 'branch_id');
-    } 
+    }
 }

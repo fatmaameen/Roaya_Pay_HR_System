@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AreaManager extends Model
 {
     //
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     /**
      * Relations

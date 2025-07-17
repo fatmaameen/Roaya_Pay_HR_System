@@ -7,29 +7,29 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-     public function index()
+    public function index()
     {
         return view('admin.departments.index', [
 
             'index' => Department::paginate(10)
         ]);
     }
-  public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'department_name' => 'required|string|max:255|unique:departments,department_name',
         ]);
 
-Department::create($request->all());
+        Department::create($request->all());
 
-      session()->flash('success', "تم اضافة القسم بنجاح");
+        session()->flash('success', "تم اضافة القسم بنجاح");
         return redirect()->route('departments.index');
     }
 
     public function update(Request $request, Department $department)
     {
         $request->validate([
-            'department_name' => 'required|string|max:255|unique:departments,department_name,'.$department->id,
+            'department_name' => 'required|string|max:255|unique:departments,department_name,' . $department->id,
         ]);
 
         $department->update($request->all());
@@ -40,22 +40,21 @@ Department::create($request->all());
         ]);
     }
 
-  public function destroy($id)
-{
-    try {
-        $department = Department::findOrFail($id);
-        $department->delete();
+    public function destroy($id)
+    {
+        try {
+            $department = Department::findOrFail($id);
+            $department->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'تم حذف القسم بنجاح'
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'message' => 'حدث خطأ أثناء محاولة الحذف: ' . $e->getMessage()
-        ], 500);
+            return response()->json([
+                'success' => true,
+                'message' => 'تم حذف القسم بنجاح'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'حدث خطأ أثناء محاولة الحذف: ' . $e->getMessage()
+            ], 500);
+        }
     }
-}
-
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\AreaManagerController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\JobController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -98,6 +99,14 @@ Route::prefix('branches')->group(function () {
     Route::get('/{branch}/edit', [BranchController::class, 'edit'])->name('branches.edit');
     Route::put('/{branch}', [BranchController::class, 'update'])->name('branches.update');
     Route::delete('/{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
+});
+Route::prefix('jobs')->group(function () {
+    Route::get('/', [JobController::class, 'index'])->name('jobs.index');
+    Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
+    Route::post('/', [JobController::class, 'store'])->name('jobs.store');
+    Route::get('/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+    Route::put('/{job}', [JobController::class, 'update'])->name('jobs.update');
+    Route::delete('/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
 });
 
 Route::prefix('departments')->group(function () {

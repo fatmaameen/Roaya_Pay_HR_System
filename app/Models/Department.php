@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     //
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
 
     /**
@@ -17,5 +17,5 @@ class Department extends Model
     public function jobDetails()
     {
         return $this->hasMany(JobDetail::class, 'department_id');
-    } 
+    }
 }

@@ -42,11 +42,11 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'admin'], function () {
 
     // Without Login
-    Route::get('/login', [AdminController::class ,'login'])->name('admin.login');
-    Route::post('/login/store',  [AdminController::class ,'store'])->name('admin.login.store');
+    Route::get('login', [AdminController::class ,'login'])->name('admin.login');
+    Route::post('login/store',  [AdminController::class ,'store'])->name('admin.login.store');
 
     // With Login
-    Route::get('/dashboard',  [AdminController::class ,'dashboard'])->name('admin.dashboard');
+    Route::get('dashboard',  [AdminController::class ,'dashboard'])->name('admin.dashboard');
     Route::get('/logout',  [AdminController::class ,'logout'])->name('logout');
     Route::get('/edit',  [AdminController::class ,'edit'])->name('admin.edit');
     Route::put('/update/{admin}',  [AdminController::class ,'update'])->name('admin.update');
@@ -106,7 +106,7 @@ Route::prefix('departments')->group(function () {
     Route::post('/', [DepartmentController::class, 'store'])->name('departments.store');
     Route::get('/{department}/edit', [DepartmentController::class, 'edit'])->name('departments.edit');
     Route::put('/{department}', [DepartmentController::class, 'update'])->name('departments.update');
-Route::delete('/destroy', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+Route::delete('departments/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 });
 
 
@@ -154,7 +154,5 @@ Route::prefix('reports')->group(function () {
     Route::get('/sanctions', [ReportController::class, 'sanctions'])->name('reports.sanctions');
     Route::get('/insurance', [ReportController::class, 'insurance'])->name('reports.insurance');
 });
-
-
 
 });

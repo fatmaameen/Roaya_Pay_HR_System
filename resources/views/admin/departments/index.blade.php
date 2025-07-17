@@ -216,7 +216,7 @@ $(document).ready(function() {
         deleteDepartment(id);
     });
 
-   function deleteDepartment(id) {
+ function deleteDepartment(id) {
     Swal.fire({
         title: 'هل أنت متأكد؟',
         text: "لن تتمكن من التراجع عن هذا!",
@@ -228,7 +228,7 @@ $(document).ready(function() {
         cancelButtonText: 'إلغاء'
     }).then((result) => {
         if (result.isConfirmed) {
-            // إنشاء URL باستخدام اسم الراوت
+            // استخدم اسم الراوت بدلاً من URL ثابت
             const url = "{{ route('departments.destroy', ':id') }}".replace(':id', id);
 
             $.ajax({
@@ -242,13 +242,12 @@ $(document).ready(function() {
                        .then(() => window.location.reload());
                 },
                 error: function(xhr) {
-                    Swal.fire('خطأ!', xhr.responseJSON.message || 'حدث خطأ', 'error');
+                    Swal.fire('خطأ!', xhr.responseJSON?.message || 'حدث خطأ', 'error');
                 }
             });
         }
     });
 }
-
     // دالة لعرض رسالة النجاح
     function showSuccessAlert(message) {
         Swal.fire({

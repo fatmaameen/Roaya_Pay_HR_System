@@ -53,7 +53,7 @@ Department::create($request->all());
     } catch (\Exception $e) {
         return response()->json([
             'success' => false,
-            'message' => 'حدث خطأ أثناء الحذف: ' . $e->getMessage()
+            'message' => 'حدث خطأ أثناء محاولة الحذف: ' . $e->getMessage()
         ], 500);
     }
 }

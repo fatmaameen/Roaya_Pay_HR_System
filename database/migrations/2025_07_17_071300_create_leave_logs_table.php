@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('leave_logs', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->enum('type', ['e3tyade', '3arda']);
             $table->integer('days_number')->default(1);

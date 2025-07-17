@@ -42,11 +42,11 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'admin'], function () {
 
     // Without Login
-    Route::get('login', [AdminController::class ,'login'])->name('admin.login');
-    Route::post('login/store',  [AdminController::class ,'store'])->name('admin.login.store');
+    Route::get('/login', [AdminController::class ,'login'])->name('admin.login');
+    Route::post('/login/store',  [AdminController::class ,'store'])->name('admin.login.store');
 
     // With Login
-    Route::get('dashboard',  [AdminController::class ,'dashboard'])->name('admin.dashboard');
+    Route::get('/dashboard',  [AdminController::class ,'dashboard'])->name('admin.dashboard');
     Route::get('/logout',  [AdminController::class ,'logout'])->name('logout');
     Route::get('/edit',  [AdminController::class ,'edit'])->name('admin.edit');
     Route::put('/update/{admin}',  [AdminController::class ,'update'])->name('admin.update');

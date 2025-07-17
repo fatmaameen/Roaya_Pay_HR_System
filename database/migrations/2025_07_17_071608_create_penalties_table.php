@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('penalties', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_code');
-            $table->foreign('user_code')->references('code')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->decimal('value');
             $table->text('reason');

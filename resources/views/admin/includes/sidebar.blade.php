@@ -33,8 +33,8 @@
                 <li><a href="{{ route('departments.index') }}"><i class="la la-layer-group"></i> الادارات والاقسام</a></li>
                 <li><a href="{{ route('branches.index') }}"><i class="la la-code-branch"></i> الفروع</a></li>
                 <li><a href="{{ route('jobs.index') }}"><i class="la la-briefcase"></i> الوظائف</a></li>
-                <li><a href="{{ route('supervisors.index') }}"><i class="la la-user-tie"></i> المشرفين</a></li>
-                <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li>
+<!--                 <li><a href="{{ route('supervisors.index') }}"><i class="la la-user-tie"></i> المشرفين</a></li>
+                <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li> -->
             </ul>
         </li>
         

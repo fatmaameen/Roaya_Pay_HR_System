@@ -43,7 +43,7 @@
                             <table class="table table-striped table-bordered dataex-html5-selectors">
                                 <thead>
                                     <tr>
-                                        <th>ت</th>
+                                        <th>Id</th>
                                         <th>اسم القسم</th>
                                         <th>خيارات</th>
                                     </tr>
@@ -58,7 +58,7 @@
                                     @else
                                         @foreach ($index as $department)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $department->id }}</td>
                                                 <td>{{ $department->department_name }}</td>
                                                 <td>
                                                     <button class="btn btn-secondary btn-min-width mr-1 mb-1 edit-btn"

@@ -39,8 +39,8 @@
                   <table class="table table-striped table-bordered dataex-html5-selectors">
                     <thead>
                       <tr>
-                        <th>ت</th>
-                      
+                        <th>ID</th>
+
                         <th>البريد الالكتروني </th>
                         <th>خيارات</th>
 
@@ -50,7 +50,7 @@
                         @foreach ($index as $i)
 
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $i->id }}</td>
 
                                 <td>{{ $i->email }}</td>
                                             <td>

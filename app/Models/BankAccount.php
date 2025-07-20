@@ -12,9 +12,9 @@ class BankAccount extends Model
     /**
      * Relations
      */
-    // User <-> Bank Account
-    public function user()
+    // Employee <-> Bank Account
+    public function employee()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Employee::class, 'user_id');
     }
 }

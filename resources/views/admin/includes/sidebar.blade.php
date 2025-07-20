@@ -37,7 +37,7 @@
                 <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li>
             </ul>
         </li>
-        shjdhdsdsdhsdhsdjs
+        
         <!-- الرواتب والمكافآت -->
         <li class="nav-item">
             <a href="#"><i class="la la-money-bill-wave"></i>

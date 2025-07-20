@@ -13,8 +13,8 @@ class Employee extends Model
      * Relations
      */
     // User <-> Employee Info
-    public function user()
+    public function employee()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Employee::class, 'user_id');
     }
 }

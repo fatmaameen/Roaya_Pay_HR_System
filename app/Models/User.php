@@ -83,9 +83,9 @@ class User extends Authenticatable
 
 
     // User <-> Employee Info
-    public function employeeInfos()
+    public function contactInfo()
     {
-        return $this->hasMany(EmployeeInfo::class, 'user_id');
+        return $this->hasMany(ContactInfo::class, 'user_id');
     }
     
     

@@ -46,7 +46,7 @@
             <ul class="menu-content">
                 <li><a href="{{ route('salaries.index') }}"><i class="la la-file-invoice-dollar"></i> كشوف المرتبات</a></li>
                 <li><a href="{{ route('commissions.index') }}"><i class="la la-gift"></i> المكافآت</a></li>
-                <li><a href="{{ route('sanctions.index') }}"><i class="la la-hand-holding-usd"></i> الخصومات</a></li>
+                <li><a href="{{ route('sanctions.index') }}"><i class="la la-hand-holding-usd"></i> الجزاءات</a></li>
                 <li><a href="{{ route('vacations.index') }}"><i class="la la-plane"></i> إجازات الموظفين</a></li>
             </ul>
         </li>

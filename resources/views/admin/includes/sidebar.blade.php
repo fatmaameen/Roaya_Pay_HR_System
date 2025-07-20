@@ -33,8 +33,8 @@
                 <li><a href="{{ route('departments.index') }}"><i class="la la-layer-group"></i> الادارات والاقسام</a></li>
                 <li><a href="{{ route('branches.index') }}"><i class="la la-code-branch"></i> الفروع</a></li>
                 <li><a href="{{ route('jobs.index') }}"><i class="la la-briefcase"></i> الوظائف</a></li>
-                <li><a href="{{ route('supervisors.index') }}"><i class="la la-user-tie"></i> المشرفين</a></li>
-                <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li>
+<!--                 <li><a href="{{ route('supervisors.index') }}"><i class="la la-user-tie"></i> المشرفين</a></li>
+                <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li> -->
             </ul>
         </li>
         
@@ -46,7 +46,7 @@
             <ul class="menu-content">
                 <li><a href="{{ route('salaries.index') }}"><i class="la la-file-invoice-dollar"></i> كشوف المرتبات</a></li>
                 <li><a href="{{ route('commissions.index') }}"><i class="la la-gift"></i> المكافآت</a></li>
-                <li><a href="{{ route('sanctions.index') }}"><i class="la la-hand-holding-usd"></i> الخصومات</a></li>
+                <li><a href="{{ route('sanctions.index') }}"><i class="la la-hand-holding-usd"></i> الجزاءات</a></li>
                 <li><a href="{{ route('vacations.index') }}"><i class="la la-plane"></i> إجازات الموظفين</a></li>
             </ul>
         </li>

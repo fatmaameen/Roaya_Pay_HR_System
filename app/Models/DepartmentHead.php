@@ -29,8 +29,8 @@ class DepartmentHead extends Model
 
 
     // User <-> Department Head
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(User::class, 'user_id');
     }
 }

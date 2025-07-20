@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
 
-            $table->string('job_title')->nullable();
             $table->date('appointment_date')->nullable();
 
             $table->unsignedBigInteger('job_id');

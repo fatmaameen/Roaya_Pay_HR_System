@@ -12,7 +12,7 @@ class SalaryController extends Controller
     {
         return view('admin.salary.index', [
 
-            'index' => Employee::with('')->paginate(10)
+            'index' => Salary::with('employee')->paginate(10)
         ]);
     }
 }

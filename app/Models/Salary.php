@@ -10,10 +10,10 @@ class Salary extends Model
 
 
 
-  protected $guarded = [];
+    protected $guarded = [];
 
 
-public function employee()
+    public function employee()
     {
         return $this->belongsTo(Employee::class);
     }

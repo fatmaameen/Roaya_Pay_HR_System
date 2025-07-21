@@ -50,6 +50,10 @@ class Employee extends Model
         return $this->hasOne(EmployeeInfo::class);
     }
 
+public function bankAccount()
+{
+    return $this->hasOne(BankAccount::class);
+}
 
 
 

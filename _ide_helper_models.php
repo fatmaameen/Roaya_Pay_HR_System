@@ -217,6 +217,7 @@ namespace App\Models{
  * @property \App\Models\Salary|null $salary
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\BankAccount|null $bankAccount
  * @property-read \App\Models\ContactInfo|null $contactInfo
  * @property-read \App\Models\Education|null $education
  * @property-read \App\Models\EmployeeInfo|null $employeeInfo
@@ -462,6 +463,7 @@ namespace App\Models{
  * @property string $on_month
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty query()

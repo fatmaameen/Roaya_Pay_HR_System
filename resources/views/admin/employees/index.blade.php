@@ -38,7 +38,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($index as $employee)
+                                        @foreach ($employees as $employee)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $employee->employee_code }}</td>
@@ -67,7 +67,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $index->links() }}
+                           
                             </div>
                         </div>
                     </div>

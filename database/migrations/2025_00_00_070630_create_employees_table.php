@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            
+
             $table->unsignedBigInteger('code')->unique();
 
             $table->string('first_name');
@@ -35,7 +35,7 @@ return new class extends Migration
 
             $table->integer('military_number')->nullable();
             $table->string('photo')->nullable();
-            
+
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ class EmployeeController extends Controller
 }
 
 
-   public function store(Request $request)
+  public function store(Request $request)
 {
     $validatedData = $request->validate([
         // جدول employees
@@ -50,13 +50,13 @@ class EmployeeController extends Controller
         'religious' => 'required|in:مسلم,مسيحي',
         'national_id_number' => 'required|string|max:20|unique:employees,national_id_number',
         'national_number_release_date' => 'required|date',
-        'national_number_expire_date' => 'required|date|after_or_equal:national_id_release_date',
+        'national_number_expire_date' => 'required|date',
         'national_id_issuing_dep' => 'required|string|max:255',
         'national_id_governorate' => 'required|string|max:255',
         'nationality' => 'required|string|max:255',
         'date_of_birth' => 'required|date',
         'birth_place' => 'required|string|max:255',
-        'military_service' => 'required|in:إعفاء موقت,إعفاء نهائي,كبير عائلة,إعفاء الابن الوحيد,أدي الخدمة,إعفاء طبي',
+        'military_service' => 'nullable|in:إعفاء موقت,إعفاء نهائي,كبير عائلة,إعفاء الابن الوحيد,أدي الخدمة,إعفاء طبي',
         'military_number' => 'nullable|numeric',
         'photo' => 'nullable|image|max:2048',
 
@@ -73,9 +73,11 @@ class EmployeeController extends Controller
 
         // جدول salaries
         'total_salary' => 'nullable|numeric',
-        'main_salary' => 'nullable|numeric',
-        'transfer_allowance' => 'nullable|numeric',
-        'salary_notes' => 'nullable|string',
+
+        // جدول bank_account_
+        'bank_account_number' => 'nullable|numeric',
+        'issuing_bank_name' => 'nullable|string|max:100',
+        'account_opening_branch' => 'nullable|string|max:100',
 
         // جدول medical_incurances
         'documnet_number' => 'nullable|numeric',
@@ -92,7 +94,6 @@ class EmployeeController extends Controller
         'qualification_authority' => 'nullable|string|max:255',
 
         // جدول job_details
-        'job_title' => 'nullable|string|max:255',
         'appointment_date' => 'nullable|date',
         'job_id' => 'required|exists:jobs,id',
         'department_id' => 'required|exists:departments,id',
@@ -105,21 +106,24 @@ class EmployeeController extends Controller
         'insurance_premium_value' => 'nullable|numeric',
         'insurance_end_date' => 'nullable|date|after_or_equal:insurance_start_date',
 
-        // جدول employee_infos (مرفقات)
-        'qualification' => 'nullable|string',
-        'birth_certificate' => 'nullable|string',
-        'front_national_id' => 'nullable|string',
-        'back_national_id' => 'nullable|string',
-        'military_certificate' => 'nullable|string',
-        'brent_insurance' => 'nullable|string',
-        'employment_contract' => 'nullable|string',
-        'experience_certificate' => 'nullable|string',
+        // مرفقات ملفات الموظف
+        'qualification' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'birth_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'front_national_id' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'back_national_id' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'military_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'brent_insurance' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'employment_contract' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'experience_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
     ]);
 
-    // رفع الصورة لو موجودة
+    // حفظ صورة الموظف
     $photoPath = null;
     if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('employees/photos', 'public');
+        $photo = $request->file('photo');
+        $photoName = time() . '_' . $photo->getClientOriginalName();
+        $photo->move(public_path('uploads/employees/photos'), $photoName);
+        $photoPath = 'uploads/employees/photos/' . $photoName;
     }
 
     // 1. إنشاء الموظف
@@ -129,9 +133,9 @@ class EmployeeController extends Controller
         'last_name' => $validatedData['last_name'],
         'marital_status' => $validatedData['marital_status'],
         'religious' => $validatedData['religious'],
-        'national_id' => $validatedData['national_id'],
-        'national_id_release_date' => $validatedData['national_id_release_date'],
-        'national_id_expire_date' => $validatedData['national_id_expire_date'],
+        'national_id_number' => $validatedData['national_id_number'],
+        'national_number_release_date' => $validatedData['national_number_release_date'],
+        'national_number_expire_date' => $validatedData['national_number_expire_date'],
         'national_id_issuing_dep' => $validatedData['national_id_issuing_dep'],
         'national_id_governorate' => $validatedData['national_id_governorate'],
         'nationality' => $validatedData['nationality'],
@@ -146,29 +150,30 @@ class EmployeeController extends Controller
     $employee->contactInfo()->create($validatedData);
 
     // 3. الراتب
-    $employee->salary()->create([
-        'total_salary' => $validatedData['total_salary'],
-        'main_salary' => $validatedData['main_salary'],
-        'transfer_allowance' => $validatedData['transfer_allowance'],
-        'notes' => $validatedData['salary_notes'],
+    $employee->salary()->create(['total_salary' => $validatedData['total_salary']]);
+
+    // 4. حساب البنك
+    $employee->bankAccount()->create([
+        'bank_account_number' => $validatedData['bank_account_number'],
+        'issuing_bank_name' => $validatedData['issuing_bank_name'],
+        'account_opening_branch' => $validatedData['account_opening_branch'],
     ]);
 
-    // 4. التأمين الطبي
+    // 5. التأمين الطبي
     $employee->medicalIncurance()->create($validatedData);
 
-    // 5. التعليم
+    // 6. التعليم
     $employee->education()->create($validatedData);
 
-    // 6. بيانات الوظيفة
+    // 7. بيانات الوظيفة
     $employee->jobDetail()->create([
-        'job_title' => $validatedData['job_title'],
         'appointment_date' => $validatedData['appointment_date'],
         'job_id' => $validatedData['job_id'],
         'department_id' => $validatedData['department_id'],
         'barnch_id' => $validatedData['barnch_id'],
     ]);
 
-    // 7. بيانات التأمين
+    // 8. بيانات التأمين
     $employee->insuranceInfo()->create([
         'insurance_number' => $validatedData['insurance_number'],
         'insurance_start_date' => $validatedData['insurance_start_date'],
@@ -178,19 +183,33 @@ class EmployeeController extends Controller
         'job_id' => $validatedData['job_id'],
     ]);
 
-    // 8. ملفات الموظف
-    $employee->employeeInfo()->create([
-        'qualification' => $validatedData['qualification'],
-        'birth_certificate' => $validatedData['birth_certificate'],
-        'front_national_id' => $validatedData['front_national_id'],
-        'back_national_id' => $validatedData['back_national_id'],
-        'military_certificate' => $validatedData['military_certificate'],
-        'brent_insurance' => $validatedData['brent_insurance'],
-        'employment_contract' => $validatedData['employment_contract'],
-        'experience_certificate' => $validatedData['experience_certificate'],
-    ]);
+    // 9. مرفقات الموظف
+    $attachments = [];
+    $fields = [
+        'qualification',
+        'birth_certificate',
+        'front_national_id',
+        'back_national_id',
+        'military_certificate',
+        'brent_insurance',
+        'employment_contract',
+        'experience_certificate',
+    ];
 
-    return redirect()->back()->with('success', 'تمت إضافة الموظف بنجاح');
+    foreach ($fields as $field) {
+        if ($request->hasFile($field)) {
+            $file = $request->file($field);
+            $fileName = time() . '_' . $field . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/employees/docs'), $fileName);
+            $attachments[$field] = 'uploads/employees/docs/' . $fileName;
+        } else {
+            $attachments[$field] = null;
+        }
+    }
+
+    $employee->employeeInfo()->create($attachments);
+
+    return redirect()->route('employees.index')->with('success', 'تمت إضافة الموظف بنجاح');
 }
 
 

@@ -124,11 +124,11 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group" style="display: flex; align-items: center;">
-                                                        <label for="national_id_number" class="required"
+                                                        <label for="national_id_issuing_dep" class="required"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                                                             سجل الاصدار</label>
-                                                        <input type="text" id="national_id_number"
-                                                            name="national_id_number" class="form-control" required
+                                                        <input type="text" id="national_id_issuing_dep"
+                                                            name="national_id_issuing_dep" class="form-control" required
                                                             style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
                                                     </div>
                                                 </div>
@@ -137,10 +137,10 @@
                                             <div class="row">
      <div class="col-md-3">
                                                     <div class="form-group" style="display: flex; align-items: center;">
-                                                        <label for="governorate" class="required"
+                                                        <label for="national_id_governorate" class="required"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">محافظة
                                                             الإصدار</label>
-                                                        <select id="governorate" name="national_number_governorate"
+                                                        <select id="national_id_governorate" name="national_id_governorate"
                                                             class="form-control select2" required style="flex-grow: 1;">
                                                             <option value="">اختر </option>
                                                             @foreach ($governorates as $gov)
@@ -168,10 +168,10 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group" style="display: flex; align-items: center;">
-                                                        <label for="birth_date"
+                                                        <label for="date_of_birth"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">تاريخ
                                                             الميلاد</label>
-                                                        <input type="date" id="birth_date" name="date_of_birth"
+                                                        <input type="date" id="date_of_birth" name="date_of_birth"
                                                             class="form-control"
                                                             style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
                                                     </div>
@@ -224,10 +224,10 @@
 
     <div class="col-md-3">
         <div class="form-group" style="display: flex; align-items: center;">
-            <label for="national_id_number" style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
+            <label for="photo" style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                 صورة شخصية
             </label>
-            <input type="file" name="photo" id="national_id_number" class="form-control"
+            <input type="file" name="photo" id="photo" class="form-control"
                 style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
         </div>
     </div>

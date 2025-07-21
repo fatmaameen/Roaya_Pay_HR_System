@@ -42,8 +42,8 @@
                                         @foreach ($employees as $employee)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $employee->employee_code }}</td>
-                                                <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
+                                                <td>{{ $employee->code }}</td>
+                                                <td>{{ $employee->first_name . ' ' . $employee->last_name }}</td>
                                                 <td>{{ $employee->jobDetails->job_name ?? 'غير محدد' }}</td>
                                                 <td>{{ $employee->branches->name ?? 'غير محدد' }}</td>
                                                 <td>{{ $employee->departments->name ?? 'غير محدد' }}</td>

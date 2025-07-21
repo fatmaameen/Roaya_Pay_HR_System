@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('education', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->string('educational_qualification')->nullable();
+
             $table->string('specialization')->nullable();
+
             $table->string('graduation_year')->nullable();
+            
             $table->string('qualification_authority')->nullable();
 
             $table->timestamps();

@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('contact_infos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('address')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('governorate')->nullable();
+
             $table->string('personal_phone_number')->nullable();
             $table->string('company_phone_number')->nullable();
+
             $table->string('first_relative_phone_number')->nullable();
             $table->string('first_relative_relation')->nullable();
             $table->string('second_relative_phone_number')->nullable();

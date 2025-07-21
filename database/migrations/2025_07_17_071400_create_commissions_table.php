@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
-            $table->string('month');
+            $table->string('on_month');
             $table->decimal('value');
             $table->date('commission_date');
             $table->text('note');

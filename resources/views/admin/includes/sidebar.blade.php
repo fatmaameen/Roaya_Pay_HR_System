@@ -37,7 +37,7 @@
                 <li><a href="{{ route('area-managers.index') }}"><i class="la la-map-marked-alt"></i> مديري المناطق</a></li> -->
             </ul>
         </li>
-        
+
         <!-- الرواتب والمكافآت -->
         <li class="nav-item">
             <a href="#"><i class="la la-money-bill-wave"></i>
@@ -46,8 +46,7 @@
             <ul class="menu-content">
                 <li><a href="{{ route('salaries.index') }}"><i class="la la-file-invoice-dollar"></i> كشوف المرتبات</a></li>
                 <li><a href="{{ route('commissions.index') }}"><i class="la la-gift"></i> المكافآت</a></li>
-                <li><a href="{{ route('sanctions.index') }}"><i class="la la-hand-holding-usd"></i> الجزاءات</a></li>
-                <li><a href="{{ route('vacations.index') }}"><i class="la la-plane"></i> إجازات الموظفين</a></li>
+<li><a href="{{ route('penalties.index') }}"><i class="la la-hand-holding-usd"></i> الجزاءات</a></li>                <li><a href="{{ route('vacations.index') }}"><i class="la la-plane"></i> إجازات الموظفين</a></li>
             </ul>
         </li>
 

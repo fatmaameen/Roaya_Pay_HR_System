@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
-    //
-    protected $guarded = [];
+      protected $guarded = [];
 
 
-    /**
-     * Relations
-     */
-    // Branch <-> Job Detail
-    public function jobDetails()
+
+  public function jobDetails()
     {
-        return $this->hasMany(JobDetail::class, 'branch_id');
+        return $this->hasMany(JobDetail::class, 'barnch_id');
     }
+
+
+
+
+
+
 }

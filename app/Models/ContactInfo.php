@@ -6,20 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContactInfo extends Model
 {
-    protected $guarded = ['id'];
+       protected $guarded = [];
 
-    /**
-     * Relations
-     */
-    // User <-> Contact Info
-    public function employee()
+     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'user_id');
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
-
-
-
-    // ===============  End Relations   ============================    //
-
-
 }

@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class InsuranceInfo extends Model
 {
-    //
-    protected $guarded = ['id'];
+protected $guarded = [];
 
 
-    /**
-     * Relations
-     */
-    // User <-> Insurance Info
-    public function employee()
+       public function employee()
     {
-        return $this->belongsTo(Employee::class, 'user_id');
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
     }
 }

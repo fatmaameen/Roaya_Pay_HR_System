@@ -6,37 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobDetail extends Model
 {
-    //
-    protected $guarded = ['id'];
+protected $guarded = [];
+      public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 
-
-    /**
-     * Relations
-     */
-    // Job <-> Job Detail
     public function job()
     {
-        return $this->belongsTo(Job::class, 'job_id');
-    } 
+        return $this->belongsTo(Job::class);
+    }
 
-
-    // Department <-> Job Detail
-    public function jobDetails()
+    public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id');
-    } 
+        return $this->belongsTo(Department::class);
+    }
 
-
-    // Branch <-> Job Detail
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'branch_id');
-    } 
-
-
-    // User <-> Job Detail
-    public function user()
-    {
-        return $this->belongsTo(JobDetail::class, 'user_id');
+        return $this->belongsTo(Branch::class, 'barnch_id');
     }
 }

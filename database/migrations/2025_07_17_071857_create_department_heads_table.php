@@ -14,13 +14,8 @@ return new class extends Migration
         Schema::create('department_heads', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
-
-            $table->string('name');
-
-            $table->unsignedBigInteger('head_id');
-            $table->foreign('head_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->timestamps();
         });

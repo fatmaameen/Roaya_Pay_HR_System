@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    //
-    protected $guarded = ['id'];
 
+  protected $guarded = [];
 
-    /**
-     * Relations
-     */
-    // Job <-> Job Detail
     public function jobDetails()
     {
-        return $this->hasMany(JobDetail::class, 'job_id');
-    } 
+        return $this->hasMany(JobDetail::class);
+    }
+
+    public function insuranceInfos()
+    {
+        return $this->hasMany(InsuranceInfo::class);
+    }
 }

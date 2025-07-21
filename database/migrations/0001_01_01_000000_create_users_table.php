@@ -11,24 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('code')->unique();
-
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->enum('marital_status', ['single', 'married', 'divorced']);
-            $table->string('religious');
-            $table->string('national_number');
-            $table->date('national_number_release_date');
-            $table->date('national_number_expire_date');
-            $table->string('national_number_governorate');
-            $table->string('nationality');
-            $table->date('date_of_birth');
-            $table->string('birth_place');
-            $table->boolean('military_service');
-            $table->integer('military_number')->nullable();
-            $table->integer('photo')->nullable();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 

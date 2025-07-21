@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->string('bank_account_number')->nullable();
+
             $table->string('issuing_bank_name')->nullable();
+            
             $table->string('account_opening_branch')->nullable();
 
             $table->timestamps();

@@ -14,19 +14,21 @@ return new class extends Migration
         Schema::create('job_details', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('employees')->onDelete('cascade');
-
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            
+            $table->string('job_title')->nullable();
+            
             $table->date('appointment_date')->nullable();
 
             $table->unsignedBigInteger('job_id');
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
-
+            
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-
-            $table->unsignedBigInteger('branch_id');
-            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('barnch_id');
+            $table->foreign('barnch_id')->references('id')->on('branches')->onDelete('cascade');
 
             $table->timestamps();
         });

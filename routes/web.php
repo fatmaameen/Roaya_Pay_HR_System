@@ -7,7 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\VacationController;
-use App\Http\Controllers\SanctionController;
+use App\Http\Controllers\PenaltiesController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SocialSecurityController;
@@ -86,12 +86,15 @@ Route::prefix('vacations')->group(function () {
     Route::get('/balance', [VacationController::class, 'balance'])->name('vacations.balance');
 });
 
-Route::prefix('sanctions')->group(function () {
-    Route::get('/', [SanctionController::class, 'index'])->name('sanctions.index');
-    Route::get('/{employee}/create', [SanctionController::class, 'create'])->name('sanctions.create');
-    Route::post('/{employee}', [SanctionController::class, 'store'])->name('sanctions.store');
-    Route::get('/report', [SanctionController::class, 'report'])->name('sanctions.report');
+Route::prefix('penalties')->group(function (){
+    Route::get('/', [PenaltiesController::class, 'index'])->name('penalties.index');
+    Route::get('/{employee}/create', [PenaltiesController::class, 'create'])->name('penalties.create');
+    Route::post('/', [PenaltiesController::class, 'store'])->name('penalties.store');
+    Route::put('/update/{id}', [PenaltiesController::class, 'update'])->name('penalties.update');
+    Route::put('/update/note/{id}', [PenaltiesController::class, 'note'])->name('penalties.note');
+    Route::delete('/destroy/{id}', [PenaltiesController::class, 'destroy'])->name('penalties.destroy');
 });
+
 Route::prefix('branches')->group(function () {
     Route::get('/', [BranchController::class, 'index'])->name('branches.index');
     Route::get('/create', [BranchController::class, 'create'])->name('branches.create');

@@ -6,114 +6,54 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $guarded = ['id'];
-
-
     /**
-     * Relations
-     * Users Relations
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
      */
+    protected $guarded = [];
 
-    // User <-> Contact Info
-    public function contactInfos()
+
+
+ public function contactInfo()
     {
-        return $this->hasMany(ContactInfo::class, 'user_id');
+        return $this->hasOne(ContactInfo::class, 'employee_id');
     }
 
-
-
-    // User <-> Salary
-    public function salaries()
+    public function salary()
     {
-        return $this->hasMany(Salary::class, 'user_id');
+        return $this->hasOne(Salary::class);
     }
 
-
-
-    // User <-> Medicial Insurance
-    public function medicalInsurances()
+    public function medicalIncurance()
     {
-        return $this->hasMany(MedicalIncurance::class, 'user_id');
+        return $this->hasOne(MedicalIncurance::class);
     }
 
-
-
-    // User <-> Bank Account
-    public function bankAccounts()
-    {
-        return $this->hasMany(BankAccount::class, 'user_id');
-    }
-
-
-
-    // User <-> Employee Info
-    public function contactInfo()
-    {
-        return $this->hasMany(ContactInfo::class, 'user_id');
-    }
-    
-    
-
-    // User <-> Job Detail
-    public function jobDetails()
-    {
-        return $this->hasMany(JobDetail::class, 'user_id');
-    }
-    
-
-    
-    // User <-> Education
     public function education()
     {
-        return $this->hasMany(Education::class, 'user_id');
+        return $this->hasOne(Education::class);
     }
 
-
-
-    // User <-> Insurance Info
-    public function insuranceInfos()
+    public function jobDetail()
     {
-        return $this->hasMany(InsuranceInfo::class, 'user_id');
+        return $this->hasOne(JobDetail::class);
     }
 
-
-
-    // User <-> Leave Balance
-    public function leaveBalances()
+    public function insuranceInfo()
     {
-        return $this->hasMany(LeaveBalance::class, 'user_id');
+        return $this->hasOne(InsuranceInfo::class);
     }
-    
 
-
-    // User <-> Leave Logs
-    public function leaveLogs()
+    public function employeeInfo()
     {
-        return $this->hasMany(LeaveLog::class, 'user_id');
+        return $this->hasOne(EmployeeInfo::class);
     }
 
 
 
-    // User <-> Penalty
-    public function penalties()
-    {
-        return $this->hasMany(Penalty::class, 'user_id');
-    }
 
-
-    
-    // User <-> Commission
-    public function commissions()
-    {
-        return $this->hasMany(Commission::class, 'user_id');
-    }
-    
-    
-    
-    // User <-> Department Head
-    public function deapratmentHeads()
-    {
-        return $this->hasMany(DepartmentHead::class, 'user_id');
-    }
     // ===============  End Relations   ============================    //
+
+
 }

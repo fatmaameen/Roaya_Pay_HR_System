@@ -22,7 +22,6 @@ namespace App\Models{
  * @property string|null $account_opening_branch
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|BankAccount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BankAccount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BankAccount query()
@@ -70,7 +69,6 @@ namespace App\Models{
  * @property string $note
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Commission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commission query()
@@ -103,7 +101,7 @@ namespace App\Models{
  * @property string|null $second_relative_relation
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
+ * @property-read \App\Models\Employee|null $employee
  * @method static \Illuminate\Database\Eloquent\Builder|ContactInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ContactInfo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ContactInfo query()
@@ -132,8 +130,6 @@ namespace App\Models{
  * @property string $department_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobDetail> $jobDetails
- * @property-read int|null $job_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|Department newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department query()
@@ -155,8 +151,8 @@ namespace App\Models{
  * @property int $head_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
- * @property-read int|null $users_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobDetail> $jobDetails
+ * @property-read int|null $job_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|DepartmentHead newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DepartmentHead newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DepartmentHead query()
@@ -182,7 +178,7 @@ namespace App\Models{
  * @property string|null $qualification_authority
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
+ * @property-read \App\Models\Employee|null $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Education newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Education newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Education query()
@@ -222,9 +218,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\ContactInfo|null $contactInfo
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DepartmentHead> $deapratmentHeads
- * @property-read int|null $deapratment_heads_count
  * @property-read \App\Models\Education|null $education
+ * @property-read \App\Models\EmployeeInfo|null $employeeInfo
  * @property-read \App\Models\InsuranceInfo|null $insuranceInfo
  * @property-read \App\Models\JobDetail|null $jobDetail
  * @property-read \App\Models\MedicalIncurance|null $medicalIncurance
@@ -256,6 +251,36 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\EmployeeInfo
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $qualification
+ * @property string $birth_certificate
+ * @property string $national_id
+ * @property string $military_certificate
+ * @property string $experience_certificate
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Employee|null $employee
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereBirthCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereExperienceCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereMilitaryCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereNationalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereQualification($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmployeeInfo whereUserId($value)
+ */
+	class EmployeeInfo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\InsuranceInfo
  *
  * @property int $id
@@ -269,6 +294,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Employee|null $employee
+ * @property-read \App\Models\Job $job
  * @method static \Illuminate\Database\Eloquent\Builder|InsuranceInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|InsuranceInfo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|InsuranceInfo query()
@@ -294,6 +320,8 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\InsuranceInfo> $insuranceInfos
+ * @property-read int|null $insurance_infos_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobDetail> $jobDetails
  * @property-read int|null $job_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|Job newModelQuery()
@@ -319,10 +347,10 @@ namespace App\Models{
  * @property int $branch_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Branch $branch
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \App\Models\Department $department
+ * @property-read \App\Models\Employee|null $employee
  * @property-read \App\Models\Job $job
- * @property-read \App\Models\Department $jobDetails
- * @property-read JobDetail $user
  * @method static \Illuminate\Database\Eloquent\Builder|JobDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|JobDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|JobDetail query()
@@ -350,7 +378,6 @@ namespace App\Models{
  * @property string $balance_due_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveBalance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveBalance newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveBalance query()
@@ -377,7 +404,6 @@ namespace App\Models{
  * @property string $date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LeaveLog query()
@@ -406,7 +432,7 @@ namespace App\Models{
  * @property string|null $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
+ * @property-read \App\Models\Employee|null $employee
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalIncurance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalIncurance newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalIncurance query()
@@ -436,7 +462,6 @@ namespace App\Models{
  * @property string $on_month
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Penalty query()
@@ -464,7 +489,7 @@ namespace App\Models{
  * @property string|null $notes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Employee $employee
+ * @property-read \App\Models\Employee|null $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Salary newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Salary newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Salary query()

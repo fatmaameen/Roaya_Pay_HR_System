@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penalty extends Model
 {
-    //
+    protected $guarded=[];
+    
 }

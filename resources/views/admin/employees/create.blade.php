@@ -24,39 +24,41 @@
                                         <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
                                             <i class="la la-user"></i> البيانات الأساسية
                                         </h5>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group" style="display: flex; align-items: center;">
-                                                    <label for="first_name" class="required"
-                                                        style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">كود الموظف
-                                                        </label>
-                                                    <input type="text" id="code" name="code"
-                                                        class="form-control" required
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group" style="display: flex; align-items: center;">
-                                                    <label for="first_name" class="required"
-                                                        style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">الاسم
-                                                        الأول</label>
-                                                    <input type="text" id="first_name" name="first_name"
-                                                        class="form-control" required
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" style="display: flex; align-items: center;">
-                                                    <label for="last_name" class="required"
-                                                        style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">باقي
-                                                        الاسم كاملا</label>
-                                                    <input type="text" id="last_name" name="last_name"
-                                                        class="form-control" required
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                                </div>
-                                            </div>
+                                   <div class="row">
+    <div class="col-md-3">
+        <div class="form-group" style="display: flex; align-items: center;">
+            <label for="code" class="required"
+                style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">كود الموظف</label>
+            <input type="text" id="code" name="code"
+                value="{{ old('code') }}"
+                class="form-control" required
+                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        </div>
+    </div>
 
-                                        </div>
+    <div class="col-md-3">
+        <div class="form-group" style="display: flex; align-items: center;">
+            <label for="first_name" class="required"
+                style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">الاسم الأول</label>
+            <input type="text" id="first_name" name="first_name"
+                value="{{ old('first_name') }}"
+                class="form-control" required
+                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group" style="display: flex; align-items: center;">
+            <label for="last_name" class="required"
+                style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">باقي الاسم كاملا</label>
+            <input type="text" id="last_name" name="last_name"
+                value="{{ old('last_name') }}"
+                class="form-control" required
+                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        </div>
+    </div>
+</div>
+
 
                                         <div class="row">
                                             <div class="col-md-3">
@@ -64,35 +66,37 @@
                                                     <label for="marital_status"
                                                         style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">الحالة
                                                         الاجتماعية</label>
-                                                    <select id="marital_status" name="marital_status" class="form-control"
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                                        <option value="">اختر </option>
-                                                        <option value="اعزب">أعزب</option>
-                                                        <option value="متزوج">متزوج</option>
-                                                             <option value="مطلق">مطلق</option>
-                                                    </select>
+                                                  <select id="marital_status" name="marital_status" class="form-control"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+    <option value="">اختر</option>
+    <option value="اعزب" {{ old('marital_status') == 'اعزب' ? 'selected' : '' }}>أعزب</option>
+    <option value="متزوج" {{ old('marital_status') == 'متزوج' ? 'selected' : '' }}>متزوج</option>
+    <option value="مطلق" {{ old('marital_status') == 'مطلق' ? 'selected' : '' }}>مطلق</option>
+</select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group" style="display: flex; align-items: center;">
                                                     <label for="religion"
                                                         style="margin-bottom: 0; margin-left: 10px; min-width: 60px;">الديانة</label>
-                                                    <select id="religion" name="religious" class="form-control"
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                                        <option value="">اختر </option>
-                                                        <option value="مسلم">مسلم</option>
-                                                        <option value="مسيحي">مسيحي</option>
-                                                    </select>
+                                                   <select id="religion" name="religious" class="form-control"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+    <option value="">اختر</option>
+    <option value="مسلم" {{ old('religious') == 'مسلم' ? 'selected' : '' }}>مسلم</option>
+    <option value="مسيحي" {{ old('religious') == 'مسيحي' ? 'selected' : '' }}>مسيحي</option>
+</select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group" style="display: flex; align-items: center;">
-                                                    <label for="national_id_number" class="required"
+                                                    <label for="national_id" class="required"
                                                         style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">الرقم
                                                         القومي</label>
-                                                    <input type="number" id="national_id_number" name="national_number"
-                                                        class="form-control" required
-                                                        style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                                  <input type="number" id="national_id" name="national_id"
+    value="{{ old('national_id') }}"
+    class="form-control" required
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -103,9 +107,11 @@
                 style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                 تاريخ الإصدار
             </label>
-            <input type="date" id="release_date"
-                name="national_number_release_date" class="form-control" required
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <input type="date" id="release_date" name="national_id_release_date"
+    value="{{ old('national_id_release_date') }}"
+    class="form-control" required
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -115,9 +121,10 @@
                 style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                 تاريخ الانتهاء
             </label>
-            <input type="date" id="national_number_expire_date"
-                name="national_number_expire_date" class="form-control" required
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;" readonly>
+           <input type="date" id="national_number_expire_date" name="national_id_expire_date"
+    value="{{ old('national_id_expire_date') }}"
+    class="form-control" required readonly
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
         </div>
 
 </div>
@@ -127,9 +134,10 @@
                                                         <label for="national_id_issuing_dep" class="required"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                                                             سجل الاصدار</label>
-                                                        <input type="text" id="national_id_issuing_dep"
-                                                            name="national_id_issuing_dep" class="form-control" required
-                                                            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                                    <input type="text" id="national_id_issuing_dep" name="national_id_issuing_dep"
+    value="{{ old('national_id_issuing_dep') }}"
+    class="form-control" required
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
                                                     </div>
                                                 </div>
 
@@ -140,29 +148,27 @@
                                                         <label for="national_id_governorate" class="required"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">محافظة
                                                             الإصدار</label>
-                                                        <select id="national_id_governorate" name="national_id_governorate"
-                                                            class="form-control select2" required style="flex-grow: 1;">
-                                                            <option value="">اختر </option>
-                                                            @foreach ($governorates as $gov)
-                                                                <option value="{{ $gov }}">{{ $gov }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                     <select id="national_id_governorate" name="national_id_governorate" class="form-control select2" required style="flex-grow: 1;">
+    <option value="">اختر</option>
+    @foreach ($governorates as $gov)
+        <option value="{{ $gov }}" {{ old('national_id_governorate') == $gov ? 'selected' : '' }}>{{ $gov }}</option>
+    @endforeach
+</select>
                                                     </div>
                                                 </div>
                                               <div class="col-md-3">
     <div class="form-group" style="display: flex; align-items: center;">
         <label for="nationality" style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">الجنسية</label>
-        <select name="nationality" id="nationality" class="form-control select2" style="flex-grow: 1;">
-            @php
-                $nationalities = ['مصرية', 'سعودية', 'سودانية', 'سورية', 'فلسطينية', 'أردنية', 'عراقية', 'ليبية', 'جزائرية', 'مغربية', 'تونسية', 'يمنية', 'لبنانية', 'قطرية', 'إماراتية', 'بحرينية', 'كويتية', 'عمانية'];
-            @endphp
-            @foreach ($nationalities as $nationality)
-                <option value="{{ $nationality }}" {{ $nationality == 'مصرية' ? 'selected' : '' }}>
-                    {{ $nationality }}
-                </option>
-            @endforeach
-        </select>
+       <select name="nationality" id="nationality" class="form-control select2" style="flex-grow: 1;">
+    @php
+        $nationalities = ['مصرية', 'سعودية', 'سودانية', 'سورية', 'فلسطينية', 'أردنية', 'عراقية', 'ليبية', 'جزائرية', 'مغربية', 'تونسية', 'يمنية', 'لبنانية', 'قطرية', 'إماراتية', 'بحرينية', 'كويتية', 'عمانية'];
+    @endphp
+    @foreach ($nationalities as $nationality)
+        <option value="{{ $nationality }}" {{ old('nationality', 'مصرية') == $nationality ? 'selected' : '' }}>
+            {{ $nationality }}
+        </option>
+    @endforeach
+</select>
     </div>
 </div>
 
@@ -171,9 +177,11 @@
                                                         <label for="date_of_birth"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">تاريخ
                                                             الميلاد</label>
-                                                        <input type="date" id="date_of_birth" name="date_of_birth"
-                                                            class="form-control"
-                                                            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                                     <input type="date" id="date_of_birth" name="date_of_birth"
+    value="{{ old('date_of_birth') }}"
+    class="form-control"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -181,8 +189,10 @@
                                                         <label for="birth_date"
                                                             style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">محل
                                                             الميلاد</label>
-                                                        <input type="text" name="birth_place" class="form-control"
-                                                            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                                     <input type="text" name="birth_place"
+    value="{{ old('birth_place') }}"
+    class="form-control" required
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,16 +207,16 @@
         <label for="military_service" style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
             الخدمة العسكرية
         </label>
-        <select name="military_service" id="military_service" class="form-control"
-            style="height: 40px; border: none; border-bottom: 1px solid #ddd; flex-grow: 1;">
-            <option value="">-- اختر --</option>
-            <option value="1">اعفاء مؤقت</option>
-            <option value="2">اعفاء نهائي</option>
-            <option value="3">اعفاء كبير عائلة</option>
-            <option value="4">اعفاء الابن الوحيد</option>
-            <option value="5">أدى الخدمة</option>
-            <option value="6">اعفاء طبي</option>
-        </select>
+      <select name="military_service" id="military_service" class="form-control"
+    style="height: 40px; border: none; border-bottom: 1px solid #ddd; flex-grow: 1;">
+    <option value="">-- اختر --</option>
+    <option value="اعفاء مؤقت" {{ old('military_service') == 'اعفاء مؤقت' ? 'selected' : '' }}>اعفاء مؤقت</option>
+    <option value="اعفاء نهائي" {{ old('military_service') == 'اعفاء نهائي' ? 'selected' : '' }}>اعفاء نهائي</option>
+    <option value="اعفاء كبير عائلة" {{ old('military_service') == 'اعفاء كبير عائلة' ? 'selected' : '' }}>اعفاء كبير عائلة</option>
+    <option value="اعفاء الابن الوحيد" {{ old('military_service') == 'اعفاء الابن الوحيد' ? 'selected' : '' }}>اعفاء الابن الوحيد</option>
+    <option value="أدي الخدمة" {{ old('military_service') == 'أدي الخدمة' ? 'selected' : '' }}>أدى الخدمة</option>
+    <option value="اعفاء طبي" {{ old('military_service') == 'اعفاء طبي' ? 'selected' : '' }}>اعفاء طبي</option>
+</select>
     </div>
 </div>
 
@@ -216,8 +226,10 @@
         <label for="military_number" style="margin-bottom: 0; margin-left: 10px; min-width: 140px; white-space: nowrap;">
             الرقم العسكري الثلاثي
         </label>
-        <input type="text" name="military_number" id="military_number" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+      <input type="text" name="military_number" id="military_number"
+    value="{{ old('military_number') }}"
+    class="form-control"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
     </div>
 </div>
 
@@ -227,8 +239,8 @@
             <label for="photo" style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">
                 صورة شخصية
             </label>
-            <input type="file" name="photo" id="photo" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+          <input type="file" name="photo" id="photo" class="form-control"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
         </div>
     </div>
                                         </div>
@@ -247,17 +259,22 @@
                                             <label for="phone" class="required"
                                                 style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">
                                                 عنوان السكن</label>
-                                            <input type="text" id="phone" name="address" class="form-control"
-                                                required
-                                                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                          <!-- عنوان السكن -->
+<input type="text" id="phone" name="address" class="form-control" required
+    value="{{ old('address') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
                                         </div>
                                     </div>
                                          <div class="col-md-3">
                                         <div class="form-group" style="display: flex; align-items: center;">
                                             <label for="governorate"
                                                 style="margin-bottom: 0; margin-left: 10px; min-width: 60px;">المحافظة</label>
-                                            <input type="text" id="governorate" name="governorate" class="form-control"
-                                                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                         <!-- المحافظة -->
+<input type="text" id="governorate" name="governorate" class="form-control"
+    value="{{ old('governorate') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -265,8 +282,11 @@
                                             <label for="email"
                                                 style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">المركز/الحي
                                                 </label>
-                                            <input type="text" id="neighborhood" name="neighborhood" class="form-control"
-                                                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                                         <!-- المركز/الحي -->
+<input type="text" id="neighborhood" name="neighborhood" class="form-control"
+    value="{{ old('neighborhood') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
                                         </div>
                                     </div>
 
@@ -278,8 +298,11 @@
             <label for="personal_phone_number" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 رقم الهاتف الشخصي
             </label>
-            <input type="number" name="personal_phone_number" id="personal_phone_number" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+           <!-- رقم الهاتف الشخصي -->
+<input type="number" name="personal_phone_number" id="personal_phone_number" class="form-control"
+    value="{{ old('personal_phone_number') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -289,8 +312,11 @@
             <label for="company_phone_number" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 رقم هاتف من الشركة
             </label>
-            <input type="number" name="company_phone_number" id="company_phone_number" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <!-- رقم هاتف من الشركة -->
+<input type="number" name="company_phone_number" id="company_phone_number" class="form-control"
+    value="{{ old('company_phone_number') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -300,8 +326,10 @@
             <label for="first_relative_phone_number" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 رقم القريب الأول
             </label>
-            <input type="number" name="first_relative_phone_number" id="first_relative_phone_number" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+<input type="number" name="first_relative_phone_number" id="first_relative_phone_number" class="form-control"
+    value="{{ old('first_relative_phone_number') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -311,8 +339,10 @@
             <label for="first_relative_relation" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 درجة القرابة 1
             </label>
-            <input type="text" name="first_relative_relation" id="first_relative_relation" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+<input type="text" name="first_relative_relation" id="first_relative_relation" class="form-control"
+    value="{{ old('first_relative_relation') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -322,8 +352,10 @@
             <label for="second_relative_phone_number" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 رقم القريب الثاني
             </label>
-            <input type="number" name="second_relative_phone_number" id="second_relative_phone_number" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+<input type="number" name="second_relative_phone_number" id="second_relative_phone_number" class="form-control"
+    value="{{ old('second_relative_phone_number') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 
@@ -333,284 +365,321 @@
             <label for="second_relative_relation" style="margin-bottom: 0; margin-left: 10px; min-width: 130px; white-space: nowrap;">
                 درجة القرابة 2
             </label>
-            <input type="text" name="second_relative_relation" id="second_relative_relation" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+<input type="text" name="second_relative_relation" id="second_relative_relation" class="form-control"
+    value="{{ old('second_relative_relation') }}"
+    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+
         </div>
     </div>
 </div>
 
                             </div>
 
-                            <!-- تفاصيل الوظيفة -->
-                            <div class="form-section"
-                                style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
-                                <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
-                                    <i class="la la-briefcase"></i> تفاصيل الوظيفة
-                                </h5>
-                                <div class="row">
-                                  <div class="col-md-3">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="job_name" class="required"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">اسم الوظيفة</label>
-        <select id="job_name" name="job_id" class="form-control select2" required
-            style="height: 40px; flex-grow: 1;">
-            <option value="">اختر </option>
-            @foreach ($jobs as $job)
-                <option value="{{ $job->id }}">{{ $job->name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-                                 <div class="col-md-2">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="department" class="required"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 50px;">القسم</label>
-        <select id="department" name="department_id" class="form-control select2" required
-            style="height: 40px; flex-grow: 1;">
-            <option value="">اختر </option>
-            @foreach ($departments as $department)
-                <option value="{{ $department->id }}">{{ $department->name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-<div class="col-md-2">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="branch"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 50px;">الفرع</label>
-        <select id="branch" name="branch_id" class="form-control select2"
-            style="height: 40px; flex-grow: 1;">
-            <option value="">اختر </option>
-            @foreach ($branches as $branch)
-                <option value="{{ $branch->id }}">{{ $branch->name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-                                        <div class="col-md-3">
-                                        <div class="form-group" style="display: flex; align-items: center;">
-                                            <label for="appointment_date" class="required"
-                                                style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">تاريخ
-                                                التعيين</label>
-                                            <input type="date" id="appointment_date" name="appointment_date"
-                                                class="form-control" required
-                                                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- البيانات التعليمية -->
-                            <div class="form-section"
-                                style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
-                                <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
-                                    <i class="la la-graduation-cap"></i> البيانات التعليمية
-                                </h5>
-                                <div class="row">
-                                  <div class="col-md-3">
-   <div class="form-group" style="display: flex; align-items: center;">
-        <label for="educational_qualification"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            المؤهل الدراسي
-        </label>
-        <input type="text" id="educational_qualification" name="educational_qualification" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-<div class="col-md-5">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="specialization"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            التخصص العلمي
-        </label>
-        <input type="text" id="specialization" name="specialization" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-<div class="col-md-3">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="graduation_year"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            سنة التخرج
-        </label>
-        <input type="date" id="graduation_year" name="graduation_year" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="qualification_authority"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            جهة المؤهل
-        </label>
-        <input type="text" id="qualification_authority" name="qualification_authority" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-                                </div>
-
-                            </div>
-   <!--  بيانات الرقم التاميني -->
-                            <div class="form-section"
-                                style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
-                                <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
-                                    <i class="la la-shield-alt"></i> بيانات الرقم التاميني
-                                </h5>
-                                <div class="row">
-                                  <div class="col-md-3">
-   <div class="form-group" style="display: flex; align-items: center;">
-        <label for="insurance_number"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-             الرقم التاميني
-        </label>
-        <input type="number" id="insurance_number" name="insurance_number" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="insurance_start_date"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-             تاريخ البداية
-        </label>
-        <input type="date" id="insurance_start_date" name="insurance_start_date" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-
-
-
-
-<div class="col-md-4">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="insurance_agency"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            التابع لتامينات
-        </label>
-        <input type="text" id="insurance_agency" name="insurance_agency" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="insurance_premium_value"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-            قيمة قسط التامين
-        </label>
-        <input type="number" id="insurance_premium_value" name="insurance_premium_value" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group" style="display: flex; align-items: center;">
-        <label for="insurance_end_date"
-            style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-             تاريخ الفصل
-        </label>
-        <input type="date" id="insurance_end_date" name="insurance_end_date" class="form-control"
-            style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
-    </div>
-</div>
-                                </div>
-
-                            </div>
-
-                         <!--  التامين الطبي -->
-                            <div class="form-section"
-                                style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
-                                <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
-                                    <i class="la la-heartbeat"></i> التامين الطبي
-                                </h5>
-                         <div class="row">
-    {{-- رقم الوثيقة --}}
-    <div class="col-md-3">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="documnet_number"
-                style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-                رقم الوثيقة
-            </label>
-            <input type="number" id="documnet_number" name="documnet_number" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                  <!-- تفاصيل الوظيفة -->
+<div class="form-section"
+    style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
+    <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
+        <i class="la la-briefcase"></i> تفاصيل الوظيفة
+    </h5>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="job_name" class="required"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 80px;">اسم الوظيفة</label>
+                <select id="job_name" name="job_id" class="form-control select2" required
+                    style="height: 40px; flex-grow: 1;">
+                    <option value="">اختر</option>
+                    @foreach ($jobs as $job)
+                        <option value="{{ $job->id }}" {{ old('job_id') == $job->id ? 'selected' : '' }}>
+                            {{ $job->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-    </div>
 
-    {{-- تاريخ البداية --}}
-    <div class="col-md-4">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="start_date"
-                style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
-                تاريخ البداية
-            </label>
-            <input type="date" id="start_date" name="start_date" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <div class="col-md-2">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="department" class="required"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 50px;">القسم</label>
+                <select id="department" name="department_id" class="form-control select2" required
+                    style="height: 40px; flex-grow: 1;">
+                    <option value="">اختر</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                            {{ $department->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-    </div>
 
-    {{-- الشريحة المؤمن عليها --}}
-    <div class="col-md-4">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="insured_sim"
-                style="margin-bottom: 0; margin-left: 10px; min-width: 150px; white-space: nowrap;">
-                الشريحة المؤمن عليها
-            </label>
-            <input type="number" id="insured_sim" name="insured_sim" class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <div class="col-md-2">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="branch"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 50px;">الفرع</label>
+                <select id="branch" name="branch_id" class="form-control select2"
+                    style="height: 40px; flex-grow: 1;">
+                    <option value="">اختر</option>
+                    @foreach ($branches as $branch)
+                        <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
+                            {{ $branch->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="appointment_date" class="required"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 100px;">تاريخ التعيين</label>
+                <input type="date" id="appointment_date" name="appointment_date"
+                    class="form-control" required
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;"
+                    value="{{ old('appointment_date') }}">
+            </div>
         </div>
     </div>
 </div>
 
-                             <div class="row">
-    <!-- اسم شركة التأمين -->
-    <div class="col-md-4">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="insurance_company_name" style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
 
-                اسم شركة التأمين
-            </label>
-            <input type="text" id="insurance_company_name" name="insurance_company_name"
-                class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                  <!-- البيانات التعليمية -->
+<div class="form-section"
+    style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
+    <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
+        <i class="la la-graduation-cap"></i> البيانات التعليمية
+    </h5>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="educational_qualification"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    المؤهل الدراسي
+                </label>
+                <input type="text" id="educational_qualification" name="educational_qualification"
+                    class="form-control"
+                    value="{{ old('educational_qualification') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
         </div>
-    </div>
 
-    <!-- قيمة قسط التأمين -->
-    <div class="col-md-4">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="medical_insurance_premium_value" style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
-
-                قيمة قسط التأمين
-            </label>
-            <input type="number" id="medical_insurance_premium_value" name="medical_insurance_premium_value"
-                class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <div class="col-md-5">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="specialization"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    التخصص العلمي
+                </label>
+                <input type="text" id="specialization" name="specialization" class="form-control"
+                    value="{{ old('specialization') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
         </div>
-    </div>
 
-    <!-- تاريخ الفصل -->
-    <div class="col-md-3">
-        <div class="form-group" style="display: flex; align-items: center;">
-            <label for="end_date" style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
+        @php $currentYear = date('Y'); @endphp
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="graduation_year"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    سنة التخرج
+                </label>
+                <select id="graduation_year" name="graduation_year" class="form-control"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+                    <option value="">اختر سنة</option>
+                    @for ($year = $currentYear; $year >= 1800; $year--)
+                        <option value="{{ $year }}" {{ old('graduation_year') == $year ? 'selected' : '' }}>
+                            {{ $year }}
+                        </option>
+                    @endfor
+                </select>
+            </div>
+        </div>
 
-                تاريخ الفصل
-            </label>
-            <input type="date" id="end_date" name="end_date"
-                class="form-control"
-                style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="qualification_authority"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    جهة المؤهل
+                </label>
+                <input type="text" id="qualification_authority" name="qualification_authority"
+                    class="form-control"
+                    value="{{ old('qualification_authority') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
         </div>
     </div>
 </div>
 
-                            </div>
-                            <!-- البيانات المالية -->
-                      <div class="form-section"
+                     <!--  بيانات الرقم التاميني -->
+<div class="form-section"
+    style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
+    <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
+        <i class="la la-shield-alt"></i> بيانات الرقم التاميني
+    </h5>
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_number"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    الرقم التاميني
+                </label>
+                <input type="number" id="insurance_number" name="insurance_number"
+                    class="form-control"
+                    value="{{ old('insurance_number') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_start_date"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    تاريخ البداية
+                </label>
+                <input type="date" id="insurance_start_date" name="insurance_start_date"
+                    class="form-control"
+                    value="{{ old('insurance_start_date') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_agency"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    التابع لتامينات
+                </label>
+                <input type="text" id="insurance_agency" name="insurance_agency"
+                    class="form-control"
+                    value="{{ old('insurance_agency') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_premium_value"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    قيمة قسط التامين
+                </label>
+                <input type="number" id="insurance_premium_value" name="insurance_premium_value"
+                    class="form-control"
+                    value="{{ old('insurance_premium_value') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_end_date"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    تاريخ الفصل
+                </label>
+                <input type="date" id="insurance_end_date" name="insurance_end_date"
+                    class="form-control"
+                    value="{{ old('insurance_end_date') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--  التامين الطبي -->
+<div class="form-section"
+    style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
+    <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
+        <i class="la la-heartbeat"></i> التامين الطبي
+    </h5>
+    <div class="row">
+        {{-- رقم الوثيقة --}}
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="documnet_number"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    رقم الوثيقة
+                </label>
+                <input type="number" id="documnet_number" name="documnet_number" class="form-control"
+                    value="{{ old('documnet_number') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        {{-- تاريخ البداية --}}
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="start_date"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px; white-space: nowrap;">
+                    تاريخ البداية
+                </label>
+                <input type="date" id="start_date" name="start_date" class="form-control"
+                    value="{{ old('start_date') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        {{-- الشريحة المؤمن عليها --}}
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insured_sim"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 150px; white-space: nowrap;">
+                    الشريحة المؤمن عليها
+                </label>
+                <input type="number" id="insured_sim" name="insured_sim" class="form-control"
+                    value="{{ old('insured_sim') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- اسم شركة التأمين -->
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="insurance_company_name"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
+                    اسم شركة التأمين
+                </label>
+                <input type="text" id="insurance_company_name" name="insurance_company_name"
+                    class="form-control"
+                    value="{{ old('insurance_company_name') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <!-- قيمة قسط التأمين -->
+        <div class="col-md-4">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="medical_insurance_premium_value"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
+                    قيمة قسط التأمين
+                </label>
+                <input type="number" id="medical_insurance_premium_value" name="medical_insurance_premium_value"
+                    class="form-control"
+                    value="{{ old('medical_insurance_premium_value') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+
+        <!-- تاريخ الفصل -->
+        <div class="col-md-3">
+            <div class="form-group" style="display: flex; align-items: center;">
+                <label for="end_date"
+                    style="margin-bottom: 0; margin-left: 10px; min-width: 120px;">
+                    تاريخ الفصل
+                </label>
+                <input type="date" id="end_date" name="end_date"
+                    class="form-control"
+                    value="{{ old('end_date') }}"
+                    style="border: none; border-bottom: 1px solid #ddd; height: 40px; flex-grow: 1;">
+            </div>
+        </div>
+    </div>
+</div>
+
+                  <!-- البيانات المالية -->
+<div class="form-section"
     style="margin-bottom: 30px; border-bottom: 2px solid #f5f5f5; padding-bottom: 20px;">
     <h5 style="color: #2c5a9d; font-weight: bold; margin-bottom: 20px;">
         <i class="la la-money"></i> البيانات المالية
@@ -621,6 +690,7 @@
             <div class="form-group d-flex align-items-center">
                 <label for="bank_account_number" style="min-width: 120px; margin-bottom: 0;">رقم الحساب البنكي</label>
                 <input type="number" id="bank_account_number" name="bank_account_number" class="form-control"
+                    value="{{ old('bank_account_number') }}"
                     style="border: none; border-bottom: 1px solid #ccc; height: 40px;">
             </div>
         </div>
@@ -629,6 +699,7 @@
             <div class="form-group d-flex align-items-center">
                 <label for="issuing_bank_name" style="min-width: 120px; margin-bottom: 0;">بنك مصدر الحساب</label>
                 <input type="text" id="issuing_bank_name" name="issuing_bank_name" class="form-control"
+                    value="{{ old('issuing_bank_name') }}"
                     style="border: none; border-bottom: 1px solid #ccc; height: 40px;">
             </div>
         </div>
@@ -637,18 +708,20 @@
             <div class="form-group d-flex align-items-center">
                 <label for="account_opening_branch" style="min-width: 120px; margin-bottom: 0;">فرع فتح الحساب</label>
                 <input type="text" id="account_opening_branch" name="account_opening_branch" class="form-control"
+                    value="{{ old('account_opening_branch') }}"
                     style="border: none; border-bottom: 1px solid #ccc; height: 40px;">
             </div>
         </div>
-         <div class="col-md-4">
+
+        <div class="col-md-4">
             <div class="form-group d-flex align-items-center">
-                <label for="total_salary" style="min-width: 120px; margin-bottom: 0;">اجمالي الراتب </label>
+                <label for="total_salary" style="min-width: 120px; margin-bottom: 0;">اجمالي الراتب</label>
                 <input type="number" id="total_salary" name="total_salary" class="form-control"
+                    value="{{ old('total_salary') }}"
                     style="border: none; border-bottom: 1px solid #ccc; height: 40px;">
             </div>
         </div>
     </div>
-
 </div>
 
 

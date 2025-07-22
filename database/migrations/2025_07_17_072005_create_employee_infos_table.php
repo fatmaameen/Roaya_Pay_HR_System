@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('brent_insurance');
 
             $table->string('employment_contract');
-            
+
             $table->string('experience_certificate');
-            
+
             $table->timestamps();
         });
     }

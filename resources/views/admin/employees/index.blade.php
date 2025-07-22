@@ -32,8 +32,9 @@
                                             <th>الاسم</th>
 
                                             <th>الوظيفة</th>
+                                             <th>القسم</th>
                                             <th>الفرع</th>
-                                            <th>القسم</th>
+
                                             <th>الخيارات</th>
                                         </tr>
                                     </thead>
@@ -47,12 +48,12 @@
                                                 <td>{{ $employee->branches->name ?? 'غير محدد' }}</td>
                                                 <td>{{ $employee->departments->name ?? 'غير محدد' }}</td>
                                                 <td>
-                                                    <a href="{{ route('employees.show', $employee->employee_code) }}"
+                                                    <a href="{{ route('employees.show', $employee->id) }}"
                                                         class="btn btn-sm btn-primary" title="عرض التفاصيل">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
 
-                                                    <a href="{{ route('employees.edit', $employee->employee_code) }}"
+                                                    <a href="{{ route('employees.edit', $employee->id) }}"
                                                         class="btn btn-sm btn-info" title="تعديل">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
@@ -67,7 +68,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                           
+
                             </div>
                         </div>
                     </div>

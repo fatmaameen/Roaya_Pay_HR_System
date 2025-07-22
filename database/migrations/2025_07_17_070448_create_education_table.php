@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('specialization')->nullable();
 
             $table->string('graduation_year')->nullable();
-            
+
             $table->string('qualification_authority')->nullable();
 
             $table->timestamps();

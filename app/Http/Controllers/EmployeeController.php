@@ -38,7 +38,11 @@ class EmployeeController extends Controller
     return view('admin.employees.create', compact('governorates', 'jobs', 'departments', 'branches'));
 }
 
+public function show(Employee $employee){
+        return view('admin.employees.show', compact('employee'));
 
+
+    }
   public function store(Request $request)
 {
     $validatedData = $request->validate([
@@ -46,29 +50,29 @@ class EmployeeController extends Controller
         'code' => 'required|numeric|unique:employees,code',
         'first_name' => 'required|string|max:100',
         'last_name' => 'required|string|max:255',
-        'marital_status' => 'required|in:أعزب,متزوج,مطلق',
-        'religious' => 'required|in:مسلم,مسيحي',
-        'national_id_number' => 'required|string|max:20|unique:employees,national_id_number',
-        'national_number_release_date' => 'required|date',
-        'national_number_expire_date' => 'required|date',
+        'marital_status' => 'required',
+        'religious' => 'required',
+        'national_id' => 'required|numeric|unique:employees,national_id',
+        'national_id_release_date' => 'required|date',
+        'national_id_expire_date' => 'required|date',
         'national_id_issuing_dep' => 'required|string|max:255',
         'national_id_governorate' => 'required|string|max:255',
         'nationality' => 'required|string|max:255',
         'date_of_birth' => 'required|date',
         'birth_place' => 'required|string|max:255',
-        'military_service' => 'nullable|in:إعفاء موقت,إعفاء نهائي,كبير عائلة,إعفاء الابن الوحيد,أدي الخدمة,إعفاء طبي',
-        'military_number' => 'nullable|numeric',
+        'military_service' => 'nullable',
+          'military_number' => 'nullable|string|max:255',
         'photo' => 'nullable|image|max:2048',
 
         // جدول contact_infos
         'address' => 'nullable|string|max:255',
         'neighborhood' => 'nullable|string|max:255',
         'governorate' => 'nullable|string|max:255',
-        'personal_phone_number' => 'nullable|string|max:20',
-        'company_phone_number' => 'nullable|string|max:20',
-        'first_relative_phone_number' => 'nullable|string|max:20',
+        'personal_phone_number' => 'nullable',
+        'company_phone_number' => 'nullable',
+        'first_relative_phone_number' => 'nullable',
         'first_relative_relation' => 'nullable|string|max:255',
-        'second_relative_phone_number' => 'nullable|string|max:20',
+        'second_relative_phone_number' =>'nullable',
         'second_relative_relation' => 'nullable|string|max:255',
 
         // جدول salaries
@@ -76,8 +80,8 @@ class EmployeeController extends Controller
 
         // جدول bank_account_
         'bank_account_number' => 'nullable|numeric',
-        'issuing_bank_name' => 'nullable|string|max:100',
-        'account_opening_branch' => 'nullable|string|max:100',
+        'issuing_bank_name' => 'nullable|string|max:400',
+        'account_opening_branch' => 'nullable|string|max:400',
 
         // جدول medical_incurances
         'documnet_number' => 'nullable|numeric',
@@ -85,7 +89,7 @@ class EmployeeController extends Controller
         'insured_sim' => 'nullable|string|max:255',
         'medical_insurance_premium_value' => 'nullable|numeric',
         'start_date' => 'nullable|date',
-        'end_date' => 'nullable|date|after_or_equal:start_date',
+        'end_date' => 'nullable|date|after:start_date',
 
         // جدول education
         'educational_qualification' => 'nullable|string|max:255',
@@ -95,36 +99,110 @@ class EmployeeController extends Controller
 
         // جدول job_details
         'appointment_date' => 'nullable|date',
-        'job_id' => 'required|exists:jobs,id',
-        'department_id' => 'required|exists:departments,id',
-        'barnch_id' => 'required|exists:branches,id',
+        'job_id' => 'nullable|exists:jobs,id',
+        'department_id' => 'nullable|exists:departments,id',
+        'branch_id' => 'nullable|exists:branches,id',
 
         // جدول insurance_infos
-        'insurance_number' => 'nullable|string|max:255',
+         'insurance_number' => 'nullable|numeric',
         'insurance_start_date' => 'nullable|date',
-        'insurance_agency' => 'nullable|string|max:255',
+        'insurance_agency' => 'nullable|string',
         'insurance_premium_value' => 'nullable|numeric',
-        'insurance_end_date' => 'nullable|date|after_or_equal:insurance_start_date',
+        'insurance_end_date' => 'nullable|date|after:insurance_start_date',
+
+
 
         // مرفقات ملفات الموظف
-        'qualification' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'birth_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'front_national_id' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'back_national_id' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'military_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'brent_insurance' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'employment_contract' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        'experience_certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        'qualification' => 'nullable|file|max:2048',
+        'birth_certificate' => 'nullable|file|max:2048',
+        'front_national_id' => 'nullable|file|max:2048',
+        'back_national_id' => 'nullable|file|max:2048',
+        'military_certificate' => 'nullable|file|max:2048',
+        'brent_insurance' => 'nullable|file|max:2048',
+        'employment_contract' => 'nullable|file|max:2048',
+          'experience_certificate.*' => 'nullable|file|max:2048',
+    ], [
+        // بيانات عامة
+        'code.required' => 'كود الموظف مطلوب.',
+        'code.numeric' => 'كود الموظف يجب أن يكون رقمًا.',
+        'code.unique' => 'كود الموظف مستخدم من قبل.',
+
+        'first_name.required' => 'الاسم الأول مطلوب.',
+        'first_name.string' => 'الاسم الأول يجب أن يكون نصًا.',
+        'first_name.max' => 'الاسم الأول لا يجب أن يزيد عن 100 حرف.',
+
+        'last_name.required' => 'باقي الاسم مطلوب.',
+        'last_name.string' => 'باقي الاسم يجب أن يكون نصًا.',
+        'last_name.max' => 'باقي الاسم لا يجب أن يزيد عن 255 حرف.',
+
+        'marital_status.required' => 'الحالة الاجتماعية مطلوبة.',
+        'religious.required' => 'الديانة مطلوبة.',
+
+        'national_id.required' => 'الرقم القومي مطلوب.',
+        'national_id.string' => 'الرقم القومي يجب أن يكون نصًا.',
+        'national_id.max' => 'الرقم القومي لا يجب أن يزيد عن 20 رقمًا.',
+        'national_id.unique' => 'الرقم القومي مستخدم من قبل.',
+
+        'national_id_release_date.required' => 'تاريخ إصدار الرقم القومي مطلوب.',
+        'national_id_release_date.date' => 'تاريخ إصدار الرقم القومي غير صحيح.',
+
+        'national_id_expire_date.required' => 'تاريخ انتهاء الرقم القومي مطلوب.',
+        'national_id_expire_date.date' => 'تاريخ انتهاء الرقم القومي غير صحيح.',
+        'national_id_expire_date.after' => 'تاريخ انتهاء الرقم القومي يجب أن يكون بعد تاريخ الإصدار.',
+
+        'national_id_issuing_dep.required' => 'جهة إصدار الرقم القومي مطلوبة.',
+        'national_id_governorate.required' => 'محافظة إصدار الرقم القومي مطلوبة.',
+        'nationality.required' => 'الجنسية مطلوبة.',
+        'date_of_birth.required' => 'تاريخ الميلاد مطلوب.',
+        'date_of_birth.date' => 'تاريخ الميلاد غير صحيح.',
+        'birth_place.required' => 'محل الميلاد مطلوب.',
+        'gender.required' => 'النوع مطلوب.',
+
+        'photo.image' => 'الصورة الشخصية يجب أن تكون صورة.',
+        'photo.max' => 'أقصى حجم مسموح به للصورة هو 2 ميجا.',
+
+        // بيانات الاتصال
+        'phone.string' => 'رقم الهاتف يجب أن يكون نصًا.',
+        'phone.max' => 'رقم الهاتف لا يجب أن يزيد عن 20 رقمًا.',
+        'email.email' => 'البريد الإلكتروني غير صالح.',
+        'email.max' => 'البريد الإلكتروني لا يجب أن يزيد عن 255 حرفًا.',
+        'address.max' => 'العنوان لا يجب أن يزيد عن 255 حرفًا.',
+
+        // التأمين
+        'insurance_type.string' => 'نوع التأمين يجب أن يكون نصًا.',
+        'insurance_number.string' => 'رقم التأمين يجب أن يكون نصًا.',
+        'insurance_number.max' => 'رقم التأمين لا يجب أن يزيد عن 50 حرفًا.',
+        'insurance_start_date.date' => 'تاريخ بداية التأمين غير صحيح.',
+        'insurance_end_date.date' => 'تاريخ نهاية التأمين غير صحيح.',
+        'insurance_end_date.after' => 'تاريخ نهاية التأمين يجب أن يكون بعد بدايته.',
+
+        // التأمين الطبي
+        'medical_insurance_company.string' => 'اسم شركة التأمين الطبي يجب أن يكون نصًا.',
+        'medical_insurance_company.max' => 'اسم الشركة لا يجب أن يزيد عن 255 حرفًا.',
+        'medical_insurance_number.string' => 'رقم التأمين الطبي يجب أن يكون نصًا.',
+        'medical_insurance_number.max' => 'رقم التأمين الطبي لا يجب أن يزيد عن 50 حرفًا.',
+        'medical_insurance_start_date.date' => 'تاريخ بداية التأمين الطبي غير صحيح.',
+        'medical_insurance_end_date.date' => 'تاريخ نهاية التأمين الطبي غير صحيح.',
+        'medical_insurance_end_date.after' => 'تاريخ نهاية التأمين الطبي يجب أن يكون بعد بدايته.',
+
+        // المؤهلات
+        'qualification.string' => 'المؤهل العلمي يجب أن يكون نصًا.',
+        'qualification.max' => 'المؤهل العلمي لا يجب أن يزيد عن 255 حرفًا.',
+        'qualification_date.date' => 'تاريخ الحصول على المؤهل غير صحيح.',
+        'qualification_place.string' => 'جهة الحصول على المؤهل يجب أن تكون نصًا.',
+        'qualification_place.max' => 'جهة الحصول على المؤهل لا يجب أن تزيد عن 255 حرفًا.',
     ]);
 
-    // حفظ صورة الموظف
-    $photoPath = null;
+
+    // معالجة صورة الموظف
+     $photoPath = null;
     if ($request->hasFile('photo')) {
-        $photo = $request->file('photo');
-        $photoName = time() . '_' . $photo->getClientOriginalName();
-        $photo->move(public_path('uploads/employees/photos'), $photoName);
-        $photoPath = 'uploads/employees/photos/' . $photoName;
+        $image = $request->file('photo');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('Employees_images/'), $imageName);
+        $photoPath = $imageName;
     }
+
 
     // 1. إنشاء الموظف
     $employee = Employee::create([
@@ -133,9 +211,9 @@ class EmployeeController extends Controller
         'last_name' => $validatedData['last_name'],
         'marital_status' => $validatedData['marital_status'],
         'religious' => $validatedData['religious'],
-        'national_id_number' => $validatedData['national_id_number'],
-        'national_number_release_date' => $validatedData['national_number_release_date'],
-        'national_number_expire_date' => $validatedData['national_number_expire_date'],
+        'national_id' => $validatedData['national_id'],
+        'national_id_release_date' => $validatedData['national_id_release_date'],
+        'national_id_expire_date' => $validatedData['national_id_expire_date'],
         'national_id_issuing_dep' => $validatedData['national_id_issuing_dep'],
         'national_id_governorate' => $validatedData['national_id_governorate'],
         'nationality' => $validatedData['nationality'],
@@ -147,30 +225,58 @@ class EmployeeController extends Controller
     ]);
 
     // 2. بيانات الاتصال
-    $employee->contactInfo()->create($validatedData);
+  $employee->contactInfo()->create([
+    'address' => $validatedData['address'],
+    'governorate' => $validatedData['governorate'],
+    'neighborhood' => $validatedData['neighborhood'],
+    'personal_phone_number' => $validatedData['personal_phone_number'],
+    'company_phone_number' => $validatedData['company_phone_number'],
+    'first_relative_phone_number' => $validatedData['first_relative_phone_number'],
+    'first_relative_relation' => $validatedData['first_relative_relation'],
+    'second_relative_phone_number' => $validatedData['second_relative_phone_number'],
+    'second_relative_relation' => $validatedData['second_relative_relation'],
+]);
+
 
     // 3. الراتب
-    $employee->salary()->create(['total_salary' => $validatedData['total_salary']]);
-
+$employee->salary()->create([
+        'total_salary' => $validatedData['total_salary'],
+        // 'issuing_bank_name' => $validatedData['issuing_bank_name'],
+        // 'account_opening_branch' => $validatedData['account_opening_branch'],
+    ]);
     // 4. حساب البنك
     $employee->bankAccount()->create([
         'bank_account_number' => $validatedData['bank_account_number'],
         'issuing_bank_name' => $validatedData['issuing_bank_name'],
         'account_opening_branch' => $validatedData['account_opening_branch'],
     ]);
+// 5. التأمين الطبي
+$employee->medicalIncurance()->create([
+    'documnet_number' => $validatedData['documnet_number'],
+    'insurance_company_name' => $validatedData['insurance_company_name'],
+    'insured_sim' => $validatedData['insured_sim'],
+    'medical_insurance_premium_value' => $validatedData['medical_insurance_premium_value'],
+    'start_date' => $validatedData['start_date'],
+    'end_date' => $validatedData['end_date'],
+]);
 
-    // 5. التأمين الطبي
-    $employee->medicalIncurance()->create($validatedData);
+// 6. التعليم
+$employee->education()->create([
+    'educational_qualification' => $validatedData['educational_qualification'],
+    'specialization' => $validatedData['specialization'],
+    'graduation_year' => $validatedData['graduation_year'],
+    'qualification_authority' => $validatedData['qualification_authority'],
+]);
 
-    // 6. التعليم
-    $employee->education()->create($validatedData);
+
+
 
     // 7. بيانات الوظيفة
     $employee->jobDetail()->create([
         'appointment_date' => $validatedData['appointment_date'],
         'job_id' => $validatedData['job_id'],
         'department_id' => $validatedData['department_id'],
-        'barnch_id' => $validatedData['barnch_id'],
+        'branch_id' => $validatedData['branch_id'],
     ]);
 
     // 8. بيانات التأمين
@@ -182,71 +288,51 @@ class EmployeeController extends Controller
         'insurance_end_date' => $validatedData['insurance_end_date'],
         'job_id' => $validatedData['job_id'],
     ]);
+    // معالجة المرفقات (كل ملف في سجل منفصل)
 
-    // 9. مرفقات الموظف
-    $attachments = [];
-    $fields = [
-        'qualification',
-        'birth_certificate',
-        'front_national_id',
-        'back_national_id',
-        'military_certificate',
-        'brent_insurance',
-        'employment_contract',
-        'experience_certificate',
-    ];
 
-    foreach ($fields as $field) {
-        if ($request->hasFile($field)) {
-            $file = $request->file($field);
-            $fileName = time() . '_' . $field . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/employees/docs'), $fileName);
-            $attachments[$field] = 'uploads/employees/docs/' . $fileName;
-        } else {
-            $attachments[$field] = null;
-        }
+$data = [];
+
+// رفع الملفات الفردية
+$fileFields = [
+    'qualification',
+    'birth_certificate',
+    'front_national_id',
+    'back_national_id',
+    'military_certificate',
+    'brent_insurance',
+    'employment_contract'
+];
+
+foreach ($fileFields as $field) {
+    if ($request->hasFile($field)) {
+        $file = $request->file($field);
+        $fileName = time() . '_' . $field . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path($field . '_images/'), $fileName);
+        $data[$field] = $fileName;
+    }
+}
+
+// رفع شهادات الخبرة المتعددة
+$experienceFiles = [];
+if ($request->hasFile('experience_certificate')) {
+    foreach ($request->file('experience_certificate') as $file) {
+        $fileName = time() . '_' . uniqid() . '_experience.' . $file->getClientOriginalExtension();
+        $file->move(public_path('experience_certificate_images/'), $fileName);
+        $experienceFiles[] = $fileName;
     }
 
-    $employee->employeeInfo()->create($attachments);
+    // نحفظها كـ JSON string في قاعدة البيانات
+    $data['experience_certificate'] = json_encode($experienceFiles);
+}
+
+// إنشاء السطر الواحد بكل البيانات
+$employee->employeeInfo()->create($data);
+
 
     return redirect()->route('employees.index')->with('success', 'تمت إضافة الموظف بنجاح');
 }
 
 
-     public function edit($id)
-     {
-         $event = Employee::findOrFail($id);
-         return view('admin.employees.edit', [
 
-             'edit'  => $event,
-         ]);
-     }
-     public function update(Request $request, $id)
- {
-     $event = Employee::findOrFail($id);
-
-     // التحقق من صحة البيانات
-     $this->rules['ar_name'] = 'nullable';
-     $this->rules['en_name'] = 'nullable' ;
-
-
-     $this->rules['photo'] = 'sometimes|nullable|image';
-
-     $data = $this->validate($request, $this->rules);
-
-
-     // تحديث بيانات الحدث
-     $event->update($data);
-
-     // رسالة نجاح
-     session()->flash('success', "تم تعديل البيانات بنجاح");
-     return redirect('admin/employees');
- }
-public function destroy($id)
-{
-    $Employee = Employee::findOrFail($id);
-    $Employee->delete();
-
-    return response()->json(['success' => true]);
-}
 }

@@ -11,11 +11,11 @@ class Employee extends Model
      *
      * @var list<string>
      */
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 
 
- public function contactInfo()
+    public function contactInfo()
     {
         return $this->hasOne(ContactInfo::class, 'employee_id');
     }
@@ -50,11 +50,16 @@ class Employee extends Model
         return $this->hasOne(EmployeeInfo::class);
     }
 
-public function bankAccount()
-{
-    return $this->hasOne(BankAccount::class);
-}
+    public function bankAccount()
+    {
+        return $this->hasOne(BankAccount::class);
+    }
 
+
+    public function commissions()
+    {
+        return $this->hasMany(Commission::class, 'employee_id');
+    }
 
 
     // ===============  End Relations   ============================    //

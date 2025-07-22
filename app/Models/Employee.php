@@ -65,7 +65,7 @@ class Employee extends Model
 
 
     // ===  Salary
-    public function salary()
+    public function salaries()
     {
         return $this->hasMany(Salary::class, 'employee_id');
     }

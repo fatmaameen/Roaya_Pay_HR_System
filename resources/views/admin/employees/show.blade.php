@@ -319,7 +319,7 @@
                                                 <td>{{ $employee->bankAccount->bank_account_number ?? 'غير محددة' }}</td>
                                                 <td>{{ $employee->bankAccount->issuing_bank_name ?? 'غير محددة'}}</td>
                                                 <td>{{ $employee->bankAccount->account_opening_branch ?? 'غير محددة' }}</td>
-                                                <td>{{ $employee->salary->total_salary ?? 'غير محدد' }}</td>
+                                                <td>{{ $employee->salaries->last()->total_salary ?? 'غير محدد' }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

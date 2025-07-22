@@ -57,7 +57,7 @@ class Employee extends Model
     }
 
 
-    // ===  Commissions 
+    // ===  Commissions
     public function commissions()
     {
         return $this->hasMany(Commission::class, 'employee_id');

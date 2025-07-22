@@ -18,8 +18,13 @@ return new class extends Migration
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
             $table->decimal('total_salary', 10, 2)->nullable();
+
             $table->decimal('main_salary', 10, 2)->nullable();
+
             $table->decimal('transfer_allowance', 10, 2)->nullable();
+            $table->decimal('housing_allowance', 10, 2)->nullable();
+            $table->decimal('meal_allowance', 10, 2)->nullable();
+            
             $table->text('notes')->nullable();
 
             $table->timestamps();

@@ -10,9 +10,8 @@ class SalaryController extends Controller
 {
      public function index()
     {
-        return view('admin.salary.index', [
+        $salaryRecords = Salary::with('employee')->paginate(15);
 
-            'index' => Salary::with('employee')->paginate(10)
-        ]);
+        return view('admin.salary.index', get_defined_vars() );
     }
 }

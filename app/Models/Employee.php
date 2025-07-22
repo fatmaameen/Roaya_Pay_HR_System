@@ -20,35 +20,36 @@ class Employee extends Model
         return $this->hasOne(ContactInfo::class, 'employee_id');
     }
 
-    public function salary()
-    {
-        return $this->hasOne(Salary::class);
-    }
 
     public function medicalIncurance()
     {
         return $this->hasOne(MedicalIncurance::class);
     }
 
+
     public function education()
     {
         return $this->hasOne(Education::class);
     }
+
 
     public function jobDetail()
     {
         return $this->hasOne(JobDetail::class);
     }
 
+
     public function insuranceInfo()
     {
         return $this->hasOne(InsuranceInfo::class);
     }
 
+
     public function employeeInfo()
     {
         return $this->hasOne(EmployeeInfo::class);
     }
+
 
     public function bankAccount()
     {
@@ -56,10 +57,26 @@ class Employee extends Model
     }
 
 
+    // ===  Commissions 
     public function commissions()
     {
         return $this->hasMany(Commission::class, 'employee_id');
     }
+
+
+    // ===  Salary
+    public function salary()
+    {
+        return $this->hasMany(Salary::class, 'employee_id');
+    }
+
+
+    // ===  Penalities
+    public function penalities()
+    {
+        return $this->hasMany(Penalty::class, 'employee_id');
+    }
+
 
 
     // ===============  End Relations   ============================    //

@@ -68,13 +68,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{employee}/contact', [EmployeeController::class, 'contact'])->name('employees.contact');
     });
 
-    Route::prefix('salaries')->group(function () {
-        Route::get('/', [SalaryController::class, 'index'])->name('salaries.index');
-        Route::get('/{employee}/create', [SalaryController::class, 'create'])->name('salaries.create');
-        Route::post('/{employee}', [SalaryController::class, 'store'])->name('salaries.store');
-        Route::get('/{salary}/edit', [SalaryController::class, 'edit'])->name('salaries.edit');
-        Route::put('/{salary}', [SalaryController::class, 'update'])->name('salaries.update');
-    });
+
+    // ================     Salaries     ============================== //
+    Route::controller(SalaryController::class)
+        ->prefix('salaries')->group(function () {
+            Route::get('/', 'index')->name('salaries.index');
+        });
+    // ================     Salaries End     ============================== //
 
 
     // ================     Commissions     ============================== //
@@ -111,6 +111,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/{branch}', [BranchController::class, 'update'])->name('branches.update');
         Route::delete('/{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
     });
+
     Route::prefix('jobs')->group(function () {
         Route::get('/', [JobController::class, 'index'])->name('jobs.index');
         Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
@@ -143,6 +144,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{employee}/medical/create', [MedicalInsuranceController::class, 'create'])->name('medical.create');
         Route::post('/{employee}/medical', [MedicalInsuranceController::class, 'store'])->name('medical.store');
     });
+
+
     Route::prefix('bank-accounts')->group(function () {
         Route::get('/', [BankAccountController::class, 'index'])->name('bank-accounts.index');
         Route::get('/{employee}/create', [BankAccountController::class, 'create'])->name('bank-accounts.create');
@@ -150,6 +153,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{account}/edit', [BankAccountController::class, 'edit'])->name('bank-accounts.edit');
         Route::put('/{account}', [BankAccountController::class, 'update'])->name('bank-accounts.update');
     });
+
+
     Route::prefix('supervisors')->group(function () {
         Route::get('/', [SupervisorController::class, 'index'])->name('supervisors.index');
         Route::get('/create', [SupervisorController::class, 'create'])->name('supervisors.create');
@@ -167,6 +172,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/{manager}', [AreaManagerController::class, 'update'])->name('area-managers.update');
         Route::delete('/{manager}', [AreaManagerController::class, 'destroy'])->name('area-managers.destroy');
     });
+
+
     Route::prefix('reports')->group(function () {
         Route::get('/employees', [ReportController::class, 'employees'])->name('reports.employees');
         Route::get('/salaries', [ReportController::class, 'salaries'])->name('reports.salaries');

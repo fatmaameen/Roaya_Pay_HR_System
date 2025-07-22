@@ -26,7 +26,8 @@
                                                 <th>اجمالي الراتب</th>
                                                 <th>الراتب الاساسي</th>
                                                 <th>بدل انتقال</th>
-                                                <th>بدل اخر</th>
+                                                <th>بدل سكن</th>
+                                                <th>بدل وجبات</th>
                                                 <th>جزاءات</th>
                                                 <th>مكافآت</th>
                                                 <th>الراتب النهائي</th>
@@ -34,36 +35,45 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($index as $employee)
-                                              @php
-        $salary = $employee->salary ?? 0;
-        $basic = $salary * 0.5;
-        $housing = $salary * 0.3;
-        $transport = $salary * 0.2;
+                                            @foreach ($salaryRecords as $salaryRecord)
+                                                @php
+                                                    // get total salary
+                                                    $salaryValue = $salaryRecord->total_salary ?? 0;
 
-        $total_deductions = $employee->deductions->sum('amount');
-        $total_penalties = $employee->penalties->sum('amount');
-        $total_rewards = $employee->rewards->sum('amount');
+                                                    $total_penalties = $salaryRecord->employee->penalities->sum('value') ?? 0;
 
-        $final_salary = $basic + $housing + $transport + $total_rewards - $total_deductions - $total_penalties;
-    @endphp
+                                                    $salaryDate = \Carbon\Carbon::parse($salaryRecord->date);
+
+                                                    $total_commissions = $salaryRecord->employee
+                                                    ->commissions()
+                                                    ->whereBetween('commission_date', [
+                                                        $salaryDate->copy()->startOfMonth(),
+                                                        $salaryDate->copy()->endOfMonth(),
+                                                    ])
+                                                    ->sum('value') ?? 0;
+
+                                                    $final_salary = $salaryValue + $total_commissions - $total_penalties;
+                                                @endphp
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $employee->employee_code }}</td>
-                                                    <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
-                                                    <td>{{ number_format($basic, 2) }}</td>
-        <td>{{ number_format($housing, 2) }}</td>
-        <td>{{ number_format($transport, 2) }}</td>
-        <td>{{ number_format($total_rewards, 2) }}</td>
-        <td>{{ number_format($total_deductions, 2) }}</td>
-        <td>{{ number_format($total_penalties, 2) }}</td>
-        <td><strong>{{ number_format($final_salary, 2) }}</strong></td>
-                                                    <td>{{ $employee->note ?? '-' }}</td>
+                                                    <td> {{ $loop->iteration }} </td>
+                                                    <td> {{ $salaryRecord->employee->code }} </td>
+                                                    <td>
+                                                        {{ $salaryRecord->employee->first_name . " " . $salaryRecord->employee->last_name }}
+                                                    </td>
+                                                    <td> {{ number_format($salaryRecord->total_salary, 2) }} </td>
+                                                    <td> {{ number_format($salaryRecord->main_salary, 2) }} </td>
+                                                    <td> {{ number_format($salaryRecord->transfer_allowance, 2) }} </td>
+                                                    <td> {{ number_format($salaryRecord->housing_allowance, 2) }} </td>
+                                                    <td> {{ number_format($salaryRecord->meal_allowance, 2) }} </td>
+                                                    <td> {{ number_format($total_penalties, 2) }} </td>
+                                                    <td> {{ number_format($total_commissions, 2) }} </td>
+                                                    <td> <strong> {{ number_format($final_salary, 2) }} </strong> </td>
+                                                    <td> {{ $salaryRecord->note ?? '-' }} </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -95,7 +105,7 @@
                             _method: "DELETE",
                             _token: "{{ csrf_token() }}"
                         },
-                        success: function (response) {
+                        success: function(response) {
                             if (response.success) {
                                 swal("تم الحذف!", "تم حذف الموظف بنجاح", "success")
                                     .then(() => location.reload());
@@ -103,7 +113,7 @@
                                 swal("خطأ", "فشل في حذف الموظف", "error");
                             }
                         },
-                        error: function () {
+                        error: function() {
                             swal("خطأ", "حدث خطأ أثناء تنفيذ العملية", "error");
                         }
                     });
